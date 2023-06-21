@@ -1,0 +1,44 @@
+using UnityEngine;
+using UnityEngine.Networking;
+
+
+public class Marker : Monobehaviour
+{
+  ////////////переменные////////////
+  public Gameobject Marker;
+  public GameObject Hero;
+  public GameObject ObjectToSpawn;
+  
+  public ArraycastManager AM;
+  
+  private Vector2 TouchPosition;
+  
+  /////////////////////////////////
+  
+  void Start()
+  {
+    AM = FindObjectOfType;
+    Marker.SetActive(false);
+  }
+  void Update()
+  {
+    ShowMarker();
+  }
+  
+  //////метод вывода маркера, трассировочная позиция//////
+  void ShowMarker()
+  {
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    if (hits.Count > 0)
+    {
+      Hero.transform.position = hits[0].pose.position;
+      Hero.SetActive(true);
+    }
+    //////////////выставление объекта/////////////////////
+    if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+    {
+      Instation(ObjectToSpawn, hits[0].pose.position, ObjectToSpawn.transform.rotation)
+    }
+  }
+  ////////////////////////////////////////////////////////
+}
