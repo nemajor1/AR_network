@@ -20,6 +20,7 @@ public class Marker : Monobehaviour
     AM = FindObjectOfType;
     Marker.SetActive(false);
   }
+  
   void Update()
   {
     ShowMarker();
